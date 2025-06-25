@@ -1,0 +1,32 @@
+{
+  "name": "skillforge-frontend",
+  "version": "1.0.0",
+  "description": "SkillForge Frontend with Tailwind, React 19, Vite, React Router",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "keywords": [],
+  "author": "Chandini Priya",
+  "license": "ISC",
+  "dependencies": {
+    "@supabase/supabase-js": "^2.50.1",
+    "axios": "^1.10.0",
+    "html2pdf.js": "^0.10.3",
+    "json5": "^2.2.3",
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0",
+    "react-qr-code": "^2.0.16",
+    "react-router-dom": "^7.6.2"
+  },
+  "devDependencies": {
+    "@tailwindcss/postcss": "^4.1.10",
+    "@vitejs/plugin-react": "^4.2.1",
+    "autoprefixer": "^10.4.21",
+    "postcss": "^8.5.6",
+    "tailwindcss": "^4.1.10",
+    "vite": "^6.3.5"
+  }
+}

@@ -1,0 +1,9 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.bg-hero {
+  background-image: url('https://images.unsplash.com/photo-1504384308090-c894fdcc538d'); /* You can replace this */
+  background-size: cover;
+  background-position: center;
+}
