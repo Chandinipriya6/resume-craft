@@ -54,6 +54,7 @@ export default function ResumeBuilder() {
         experience: aiResume.experience,
         skills: aiResume.skills,
         custom_sections: aiResume.customSections,
+        template: formData.template || "template2.html"
       });
 
       const resumeId = saveRes.data.resumeId;
@@ -92,7 +93,7 @@ export default function ResumeBuilder() {
 
             {formData.template && (
               <a
-                href={`https://vrefqdogglobhsccfstr.supabase.co/storage/v1/object/public/resume-templates/${formData.template}`}
+                href={`https://vrefqdogglobhsccfstr.supabase.co/storage/v1/object/public/resume-templates/templates/${formData.template}`}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-blue-600 underline mt-1 block"
