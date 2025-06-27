@@ -22,14 +22,22 @@ function PublicResume() {
         const htmlRes = await fetch(`${TEMPLATE_BASE}/${template}`);
         let htmlContent = await htmlRes.text();
 
-        // 4. Replace placeholders like {{name}}, {{email}}, etc.
+        // 4. Replace placeholders with fallback checks
         htmlContent = htmlContent
-          .replace(/{{name}}/g, resume.name)
-          .replace(/{{email}}/g, resume.email)
+          .replace(/{{name}}/g, resume.name || "")
+          .replace(/{{email}}/g, resume.email || "")
           .replace(/{{summary}}/g, resume.summary || "")
-          .replace(/{{skills}}/g, resume.skills?.join(', ') || "")
-          .replace(/{{education}}/g, resume.education?.map(e => `${e.degree} at ${e.university} (${e.years})`).join('<br>') || "")
-          .replace(/{{experience}}/g, resume.experience?.map(e => `${e.role} at ${e.company} (${e.years})`).join('<br>') || "");
+          .replace(/{{skills}}/g, Array.isArray(resume.skills) ? resume.skills.join(', ') : "")
+          .replace(/{{education}}/g,
+            Array.isArray(resume.education)
+              ? resume.education.map(e => `${e.degree} at ${e.university} (${e.years})`).join('<br>')
+              : ""
+          )
+          .replace(/{{experience}}/g,
+            Array.isArray(resume.experience)
+              ? resume.experience.map(e => `${e.role} at ${e.company} (${e.years})`).join('<br>')
+              : ""
+          );
 
         // 5. Fix the CSS path
         if (template === "template2.html") {
@@ -41,6 +49,7 @@ function PublicResume() {
 
         setHtml(htmlContent);
       } catch (err) {
+        console.error(err);
         alert("❌ Failed to load resume preview");
       }
     };
@@ -53,7 +62,6 @@ function PublicResume() {
   return (
     <div className="min-h-screen bg-gray-100 p-6">
       <div className="max-w-5xl mx-auto bg-white p-4 shadow rounded">
-        {/* Renders raw HTML with styles */}
         <iframe
           title="Resume Preview"
           srcDoc={html}
