@@ -1,3 +1,4 @@
+// ✅ ResumeBuilder.jsx (frontend/src/pages/ResumeBuilder.jsx)
 import React, { useState } from 'react';
 import axios from "axios";
 import { useNavigate } from 'react-router-dom';
@@ -43,7 +44,30 @@ export default function ResumeBuilder() {
         customSections,
       });
 
-      const aiResume = JSON5.parse(response.data.content.replace(/```json|```/g, '').trim());
+      const raw = response.data.content;
+      const jsonText = raw.match(/{[\s\S]+}/)?.[0] || '{}';
+      let aiResume = JSON.parse(jsonText);
+
+      // ✅ Ensure safe array structures
+      aiResume.skills = Array.isArray(aiResume.skills)
+        ? aiResume.skills
+        : (typeof aiResume.skills === 'string'
+            ? aiResume.skills.split(',').map(s => s.trim())
+            : []);
+
+      aiResume.education = Array.isArray(aiResume.education)
+        ? aiResume.education
+        : [];
+
+      aiResume.experience = Array.isArray(aiResume.experience)
+        ? aiResume.experience
+        : [];
+
+      aiResume.customSections = Array.isArray(aiResume.customSections)
+        ? aiResume.customSections
+        : [];
+
+      console.log("🎯 AI Resume Parsed:", aiResume);
 
       const saveRes = await axios.post(`${API_BASE}/api/resumes/save`, {
         user_id: user.id,
