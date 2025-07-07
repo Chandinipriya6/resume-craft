@@ -1,0 +1,1 @@
+-- Supabase-compatible schema for users, resumes, skills, courses
