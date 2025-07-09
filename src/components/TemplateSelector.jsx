@@ -8,18 +8,13 @@ export default function TemplateSelector({ selectedTemplate, setSelectedTemplate
   const [loadingTemplates, setLoadingTemplates] = useState(true);
 
   useEffect(() => {
-    // ✅ You don’t need Supabase anymore — just list the template files
-    const fetchTemplates = async () => {
-      setLoadingTemplates(true);
-      setTemplateList([
-        { name: 'Modern Template', file: 'template1.html' },
-        { name: 'Professional Template', file: 'template2.html' },
-        { name: 'Creative Template', file: 'template3.html' }
-      ]);
-      setLoadingTemplates(false);
-    };
-
-    fetchTemplates();
+    setLoadingTemplates(true);
+    setTemplateList([
+      { name: 'Modern Template', file: 'template1.html' },
+      { name: 'Professional Template', file: 'template2.html' },
+      { name: 'Creative Template', file: 'template3.html' },
+    ]);
+    setLoadingTemplates(false);
   }, []);
 
   return (

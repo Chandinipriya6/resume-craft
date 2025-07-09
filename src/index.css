@@ -1,9 +1,507 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-
-.bg-hero {
-  background-image: url('https://images.unsplash.com/photo-1504384308090-c894fdcc538d'); /* You can replace this */
-  background-size: cover;
-  background-position: center;
+/* Global Styles */
+body {
+  margin: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: linear-gradient(to bottom right, #fbc2eb, #a6c1ee);
+  color: #333;
 }
+
+/* Container for the whole page */
+.home-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+/* Navbar */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 40px;
+  background-color: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.logo {
+  font-size: 2rem;
+  font-weight: bold;
+  color: #6a0dad;
+}
+
+.nav-links button {
+  background: none;
+  border: none;
+  font-size: 1rem;
+  margin-left: 20px;
+  color: #444;
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+.nav-links button:hover {
+  color: #6a0dad;
+}
+
+/* Hero Section */
+.hero {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 60px 20px;
+  text-align: center;
+}
+
+.hero h2 {
+  font-size: 2.5rem;
+  color: #4b0082;
+  margin-bottom: 20px;
+}
+
+.hero p {
+  font-size: 1.2rem;
+  max-width: 700px;
+  margin-bottom: 30px;
+  color: #333;
+}
+
+/* Buttons */
+.buttons {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.primary {
+  background-color: #6a0dad;
+  color: white;
+  border: none;
+  padding: 14px 30px;
+  font-size: 1rem;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.primary:hover {
+  background-color: #7e22ce;
+}
+
+.secondary {
+  background-color: transparent;
+  border: 2px solid #6a0dad;
+  color: #6a0dad;
+  padding: 14px 30px;
+  font-size: 1rem;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.secondary:hover {
+  background-color: #f3e8ff;
+}
+
+/* Footer */
+.footer {
+  text-align: center;
+  padding: 20px;
+  font-size: 0.9rem;
+  color: #555;
+  background-color: rgba(255, 255, 255, 0.7);
+  box-shadow: inset 0 1px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* Form Page Wrappers */
+.login-page,
+.signup-page {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  background: linear-gradient(to bottom right, #fbc2eb, #a6c1ee);
+  padding: 1rem;
+}
+
+/* Login/Signup Forms */
+.login-form,
+.signup-form {
+  background-color: rgba(255, 255, 255, 0.85);
+  color: #333;
+  padding: 2rem;
+  border-radius: 1rem;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+  max-width: 400px;
+  width: 100%;
+  text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.login-form:hover,
+.signup-form:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
+}
+
+.login-form h2,
+.signup-form h2 {
+  font-size: 2rem;
+  margin-bottom: 1.5rem;
+  color: #4b0082;
+}
+
+.login-form input,
+.signup-form input {
+  background: white;
+  color: #333;
+  border: 1px solid #ccc;
+  padding: 0.75rem;
+  margin-bottom: 1rem;
+  width: 100%;
+  border-radius: 0.5rem;
+}
+
+.login-form input:focus,
+.signup-form input:focus {
+  border-color: #6a0dad;
+  box-shadow: 0 0 0 3px rgba(106, 13, 173, 0.2);
+  outline: none;
+}
+
+/* Buttons */
+.login-button,
+.signup-button {
+  background-color: #6a0dad;
+  color: white;
+  font-weight: 600;
+  border: none;
+  padding: 0.75rem;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  width: 100%;
+  font-size: 1rem;
+  transition: background 0.3s;
+}
+
+.login-button:hover,
+.signup-button:hover {
+  background-color: #7e22ce;
+}
+
+.login-button.disabled {
+  background-color: #b794f4;
+  cursor: not-allowed;
+}
+
+/* Inline Navigation Link */
+.form-link {
+  background: none;
+  border: none;
+  color: #6a0dad;
+  font-weight: 500;
+  text-decoration: underline;
+  cursor: pointer;
+  padding: 0;
+  font-size: 0.95rem;
+}
+
+/* Error Styling */
+.form-error {
+  background: #fee2e2;
+  color: #b91c1c;
+  border: 1px solid #fca5a5;
+  border-radius: 0.5rem;
+  padding: 0.5rem;
+  font-size: 0.9rem;
+  margin-bottom: 1rem;
+  text-align: center;
+}
+
+/* Resume Builder Background */
+.resume-builder-page {
+  min-height: 100vh;
+  background: linear-gradient(to bottom right, #fbc2eb, #a6c1ee);
+  padding: 60px 20px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Resume Builder Container */
+.resume-builder-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  background-color: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(8px);
+  border-radius: 16px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 40px;
+  padding: 40px;
+}
+
+@media (min-width: 992px) {
+  .resume-builder-container {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+/* Left Panel */
+.resume-builder-left h2 {
+  font-size: 2.2rem;
+  color: #4b0082;
+  margin-bottom: 20px;
+}
+
+.resume-builder-left input,
+.resume-builder-left textarea,
+.template-selector {
+  width: 100%;
+  padding: 12px 16px;
+  margin-bottom: 16px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 1rem;
+  background-color: #fff;
+  color: #333;
+  box-sizing: border-box;
+}
+
+.resume-builder-left textarea {
+  resize: vertical;
+  min-height: 80px;
+}
+
+.resume-builder-left input:focus,
+.resume-builder-left textarea:focus {
+  outline: none;
+  border-color: #6a0dad;
+  box-shadow: 0 0 0 3px rgba(106, 13, 173, 0.1);
+}
+
+/* Custom Section */
+.custom-section {
+  background-color: #f3f4f6;
+  padding: 16px;
+  border-radius: 8px;
+  margin-bottom: 16px;
+}
+
+.custom-section input,
+.custom-section textarea {
+  width: 100%;
+  margin-bottom: 8px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 0.95rem;
+}
+
+/* Buttons */
+.resume-builder-button {
+  width: 100%;
+  background-color: #2563eb;
+  color: white;
+  font-weight: 600;
+  padding: 14px;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.resume-builder-button:hover {
+  background-color: #1e40af;
+}
+
+.add-section-btn {
+  background: none;
+  border: none;
+  color: #2563eb;
+  font-size: 0.9rem;
+  font-weight: 500;
+  cursor: pointer;
+  margin-top: 4px;
+  margin-bottom: 16px;
+}
+
+.add-section-btn:hover {
+  text-decoration: underline;
+}
+
+/* Template Preview Link */
+.template-preview {
+  display: block;
+  margin-top: -12px;
+  margin-bottom: 16px;
+  color: #2563eb;
+  text-decoration: underline;
+  font-size: 0.9rem;
+}
+
+/* Right Panel */
+.resume-builder-right {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+}
+
+.resume-builder-right h2 {
+  font-size: 1.8rem;
+  color: #333;
+  margin-bottom: 12px;
+}
+
+.resume-builder-right p {
+  color: #555;
+  font-size: 1rem;
+}
+
+.preview-wrapper {
+  min-height: 100vh;
+  background-color: #f5f5f5;
+  padding: 24px 16px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.preview-topbar {
+  position: sticky;
+  top: 0;
+  background: white;
+  padding: 16px;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+  z-index: 10;
+}
+
+.preview-heading {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #1d4ed8; /* blue-700 */
+}
+
+.preview-buttons {
+  display: flex;
+  gap: 12px;
+}
+
+.back-button {
+  background-color: #e5e7eb; /* gray-200 */
+  color: #1f2937; /* gray-800 */
+  padding: 8px 16px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: background-color 0.2s ease;
+}
+
+.back-button:hover {
+  background-color: #d1d5db; /* gray-300 */
+}
+
+.download-button {
+  background-color: #16a34a; /* green-600 */
+  color: white;
+  padding: 8px 16px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: background-color 0.2s ease;
+}
+
+.download-button:hover {
+  background-color: #15803d; /* green-700 */
+}
+
+.preview-iframe-container {
+  width: 100%;
+  max-width: 1000px;
+  margin: 0 auto;
+  border: 1px solid #d1d5db; /* gray-300 */
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+  border-radius: 6px;
+  overflow: hidden;
+  background: white;
+}
+
+.preview-error-page {
+  min-height: 100vh;
+  background-color: #f3f4f6;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.error-text {
+  color: #dc2626; /* red-600 */
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin-bottom: 16px;
+}
+/* Template Selector Label and Select */
+.template-selector {
+  display: flex;
+  flex-direction: column;
+  margin-top: 20px;
+  margin-bottom: 16px;
+}
+
+.template-selector-label {
+  display: flex;
+  align-items: center;
+  font-weight: 600;
+  font-size: 1rem;
+  color: #4b0082;
+  margin-bottom: 8px;
+  gap: 8px;
+}
+
+.template-selector-select {
+  width: 100%;
+  padding: 12px 16px;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  background-color: #fff;
+  color: #333;
+  box-sizing: border-box;
+}
+
+.template-selector-select:focus {
+  border-color: #6a0dad;
+  box-shadow: 0 0 0 3px rgba(106, 13, 173, 0.1);
+  outline: none;
+}
+
+.template-preview-note {
+  font-size: 0.9rem;
+  color: #555;
+  margin-top: 6px;
+  margin-bottom: 8px;
+}
+
+.template-preview {
+  font-size: 0.9rem;
+  color: #2563eb;
+  text-decoration: underline;
+  display: inline-block;
+  margin-top: -2px;
+  margin-bottom: 20px;
+}
+/* ----------------------------
+   Home & About Page Styles
+-----------------------------*/
+
+/* Reusing .login-page and .login-form for layout consistency */
+
